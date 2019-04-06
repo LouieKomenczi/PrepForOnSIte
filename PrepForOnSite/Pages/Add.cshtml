@@ -1,0 +1,42 @@
+﻿@page
+@model PrepForOnSite.Pages.AddModel
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div>
+    <form method="post">
+
+        <fieldset>
+            <legend>Add person info</legend>
+            <div class="form-group">
+                <label asp-for=Person.FirstName> </label><br/>
+                <input asp-for=Person.FirstName />
+                <span asp-validation-for=Person.FirstName></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for=Person.LastName></label><br />
+                <input asp-for=Person.LastName />
+                <span asp-validation-for=Person.LastName></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for=Person.Pps></label><br />
+                <input asp-for=Person.Pps />
+                <span asp-validation-for=Person.Pps></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for=Person.Dob> </label><br />
+                <input asp-for=Person.Dob />
+                <span asp-validation-for=Person.Dob></span>
+            </div>
+
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary">Add Person</button>  
+    </form>
+</div>
+

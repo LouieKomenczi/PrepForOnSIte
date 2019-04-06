@@ -1,0 +1,31 @@
+﻿@page
+@model PrepForOnSite.Pages.ViewModel
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>DOB</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model.People)
+        {
+        <tr>
+            <td>@person.FirstName</td>
+            <td>@person.LastName</td>
+            <td>@person.Dob.ToShortDateString()</td>
+
+            @*<td><a asp-page="Detail" asp-route-ID="@student.ID" class="btn btn-info"> Open Details </a></td>passing ID to be able to search the correct details to Details page*@
+        </tr>
+        }
+    </tbody>
+</table>
+
+
