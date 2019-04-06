@@ -1,9 +1,22 @@
-﻿@page
+﻿@page "{id}" 
+    @*route parameter retreived here*@
 @model PrepForOnSite.Pages.ResultModel
 @{
     ViewData["Title"] = "Result";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h2>Result</h2>
+@if(@Model.Person != null)
+{
+    @Model.Person.ID <br/>
+    @Model.Person.FirstName<br />
+    @Model.Person.LastName<br />
+    @Model.Person.Dob<br />
+    @Model.Person.Gender<br />
+    @Model.Person.DriversLicence<br />
+}
+else
+{
+    <h2>No applicants </h2>
+}
 

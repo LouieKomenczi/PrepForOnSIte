@@ -24,7 +24,10 @@ namespace PrepForOnSite.Pages
 
         public IList<Person> People { get; private set; }
 
-
+        [BindProperty]
+        [Required]
+        public bool[] DriverLicenceSelected { get; set; } = { false, false, false, false, false};
+        public string[] DriversLicenceOptions { get; set; } = { "A", "B", "C", "D", "E" };
 
 
         public void OnGet()
@@ -33,11 +36,14 @@ namespace PrepForOnSite.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
+            for (int i = 0; i < 5; i++)
+                if (DriverLicenceSelected[i]) Person.DriversLicence += DriversLicenceOptions[i] + " ";
+
             if (ModelState.IsValid)
             {
                 _db.Person.Add(Person);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("/Result");
+                return RedirectToPage("./Result", new { id = Person.ID}); /*route parameter set here*/
             }
             else
             {

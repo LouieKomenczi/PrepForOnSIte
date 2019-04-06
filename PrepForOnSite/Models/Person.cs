@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,7 +9,8 @@ namespace PrepForOnSite.Models
 {
     public class Person
     {
-        [Key]
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]
@@ -17,12 +19,12 @@ namespace PrepForOnSite.Models
         public string Pps { get; set; } 
 
         [Required]
-        [RegularExpression(@"^[\w\s'.-]+$", ErrorMessage = "First name must be between2 and 50 characters. ")]
+        [RegularExpression(@"([\w\s'.-]){2,50}", ErrorMessage = "Last name must be between 2 and 50 characters. ")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; } 
 
         [Required]
-        [RegularExpression(@"^[\w\s'.-]+$", ErrorMessage = "Last name must be between2 and 50 characters. ")]
+        [RegularExpression(@"([\w\s'.-]){2,50}", ErrorMessage = "Last name must be between 2 and 50 characters. ")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
@@ -31,6 +33,14 @@ namespace PrepForOnSite.Models
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
         public DateTime Dob { get; set; }
+
+        [Required]
+        [Display(Name = "Gender")]      
+        public string Gender { get; set; }
+
+       
+        [Display(Name = "Drivers Licence")]
+        public string DriversLicence { get; set; }
 
     }
 }
