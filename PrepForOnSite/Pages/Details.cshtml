@@ -1,10 +1,11 @@
 ﻿@page "{id}"
-@*route parameter*@
-@model PrepForOnSite.Pages.ResultModel
+@model PrepForOnSite.Pages.DetailsModel
 @{
-    ViewData["Title"] = "Result";
+    ViewData["Title"] = "Details";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+
+
 
 @if (@Model.Person != null)
 {
@@ -21,16 +22,16 @@
         <div class="column">
             <h5>@Model.Person.ID </h5>
             <h5>@Model.Person.FirstName</h5>
-            <h5>@Model.Person.LastName</h5>
-            <h5>@Model.Person.Dob</h5>
-            <h5>@Model.Person.Gender</h5>
-            <h5>@Model.Person.DriversLicence</h5>
-            <h5>@Model.Person.YearsOfExperience</h5>
+            <h5>@Model.Person.LastName</h5> 
+            <h5>@Model.Person.Dob</h5> 
+            <h5>@Model.Person.Gender</h5> 
+            <h5>@Model.Person.DriversLicence</h5> 
+            <h5>@Model.Person.YearsOfExperience</h5> 
         </div>
     </div>
 
 }
 else
 {
-    <h2>No applicant! </h2>
+    <h2>Details not available! </h2>
 }

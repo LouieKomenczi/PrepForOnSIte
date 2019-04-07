@@ -1,9 +1,20 @@
-﻿@page
+﻿@page 
 @model PrepForOnSite.Pages.ViewModel
 @{
     ViewData["Title"] = "View";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+
+<form method="post">
+    <div>
+        <label asp-for=SearchName>
+            <input asp-for=SearchName />
+        </label>
+
+        <button id="submit" type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
 
 <table class="table">
     <thead>
@@ -15,17 +26,22 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var person in Model.People)
-        {
-        <tr>
-            <td>@person.FirstName</td>
-            <td>@person.LastName</td>
-            <td>@person.Dob.ToShortDateString()</td>
+            @foreach (var person in Model.People)
+            {
+                <tr>
+                    <td>@person.FirstName</td>
+                    <td>@person.LastName</td>
+                    <td>@person.Dob.ToShortDateString()</td>
 
-            @*<td><a asp-page="Detail" asp-route-ID="@student.ID" class="btn btn-info"> Open Details </a></td>passing ID to be able to search the correct details to Details page*@
-        </tr>
-        }
+                    <td><a asp-page="Details" asp-route-ID="@person.ID" class="btn btn-info"> Open Details </a></td>
+                    @*passing ID to be able to search the correct record, goes to Details page*@
+                </tr>
+
+            }   
+
     </tbody>
 </table>
+
+
 
 

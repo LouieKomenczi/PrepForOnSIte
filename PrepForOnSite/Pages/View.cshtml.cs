@@ -20,9 +20,21 @@ namespace PrepForOnSite.Pages
 
         public IList<Person> People { get; private set; }
 
+        [BindProperty]
+        public string SearchName { get; set; }
+
+        [TempData]
+        public string SearchBy { get; set; }        //tempData 
+
         public async Task OnGetAsync()
         {
             People = await _db.Person.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            SearchBy = SearchName;              // alocating value to tempData -> goes to Search page
+            return RedirectToPage("/Search");
         }
     }
 }

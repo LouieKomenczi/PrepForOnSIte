@@ -1,0 +1,59 @@
+﻿@page
+
+@model PrepForOnSite.Pages.SearchModel
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>DOB</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (String.IsNullOrEmpty(Model.SearchBy))
+        {
+            @foreach (var person in Model.People)
+            {
+                <tr>
+                    <td>@person.FirstName</td>
+                    <td>@person.LastName</td>
+                    <td>@person.Dob.ToShortDateString()</td>
+
+                    <td><a asp-page="Details" asp-route-ID="@person.ID" class="btn btn-info"> Open Details </a></td>
+                    @*passing ID to be able to search the correct record, goes to Details page*@
+                </tr>
+
+            }
+
+        }
+        else
+        {
+            @foreach (var person in Model.People)
+            {
+                @if (person.LastName == Model.SearchBy)
+                {
+                    <tr>
+                        <td>@person.FirstName</td>
+                        <td>@person.LastName</td>
+                        <td>@person.Dob.ToShortDateString()</td>
+
+                        <td><a asp-page="Details" asp-route-ID="@person.ID" class="btn btn-info"> Open Details </a></td>
+                        @*passing ID to be able to search the correct record, goes to Details page*@
+                    </tr>
+                }
+
+            }
+
+        }
+
+    </tbody>
+</table>
+
+

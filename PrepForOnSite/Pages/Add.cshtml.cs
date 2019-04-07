@@ -20,14 +20,14 @@ namespace PrepForOnSite.Pages
         }
 
         [BindProperty]
-        public Person Person { get; set; } = new Person();
+        public Person Person { get; set; } = new Person();          //creating our person object
 
-        public IList<Person> People { get; private set; }
+        public IList<Person> People { get; private set; }           
 
         [BindProperty]
         [Required]
-        public bool[] DriverLicenceSelected { get; set; } = { false, false, false, false, false};
-        public string[] DriversLicenceOptions { get; set; } = { "A", "B", "C", "D", "E" };
+        public bool[] DriverLicenceSelected { get; set; } = { false, false, false, false, false};   //arrya of bools checking for textbox selected 
+        public string[] DriversLicenceOptions { get; set; } = { "A", "B", "C", "D", "E" };          //array of string holding the values for textbox
 
 
         public void OnGet()
@@ -37,13 +37,13 @@ namespace PrepForOnSite.Pages
         public async Task<IActionResult> OnPostAsync()
         {
             for (int i = 0; i < 5; i++)
-                if (DriverLicenceSelected[i]) Person.DriversLicence += DriversLicenceOptions[i] + " ";
+                if (DriverLicenceSelected[i]) Person.DriversLicence += DriversLicenceOptions[i] + " "; //retreiving texbox input 
 
             if (ModelState.IsValid)
             {
                 _db.Person.Add(Person);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("./Result", new { id = Person.ID}); /*route parameter set here*/
+                return RedirectToPage("./Result", new { id = Person.ID}); /*route parameter set here, go to result page*/
             }
             else
             {

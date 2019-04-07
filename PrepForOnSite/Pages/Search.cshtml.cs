@@ -9,21 +9,23 @@ using PrepForOnSite.Models;
 
 namespace PrepForOnSite.Pages
 {
-    public class ResultModel : PageModel
+    public class SearchModel : PageModel
     {
-        public Person Person { get; set; } = new Person();
-
         private readonly PrepForOnSiteContext _db;
 
-        public ResultModel(PrepForOnSiteContext db)
+        public SearchModel(PrepForOnSiteContext db)
         {
             _db = db;
         }
 
-        public async Task<IActionResult> OnGetAsync(int id) //rout parameter picked up here (coming from Add page OnPost method)
+        public IList<Person> People { get; private set; }
+
+        [TempData]
+        public string SearchBy { get; set; }        //tempData 
+
+        public async Task OnGetAsync()
         {
-            Person = await _db.Person.FindAsync(id); //find in db the record with id
-            return Page();
+            People = await _db.Person.AsNoTracking().ToListAsync();
         }
     }
 }

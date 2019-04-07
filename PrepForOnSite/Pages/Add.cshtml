@@ -11,9 +11,9 @@
         <fieldset>
             <legend>Add person info</legend>
             <div class="form-group">
-                <label asp-for=Person.FirstName> </label><br/>
-                <input asp-for=Person.FirstName />
-                <span asp-validation-for=Person.FirstName></span>
+                <label asp-for=Person.FirstName> </label><br />         @*label attached to input *@
+                <input asp-for=Person.FirstName />                      @*generates input *@
+                <span asp-validation-for=Person.FirstName></span>       @*validation for input*@
             </div>
 
             <div class="form-group">
@@ -34,6 +34,8 @@
                 <span asp-validation-for=Person.Dob></span>
             </div>
 
+            <label>Gender</label>
+
             <div class="form-group">
                 <input type="radio" id="male" value="male" asp-for=Person.Gender />
                 <label for="male">Male</label>
@@ -44,14 +46,22 @@
                 <span asp-validation-for=Person.Gender></span>
             </div>
 
+            <label>Drivers Licence Category</label>
+
             <div class="form-group">
                 @for (int i = 0; i < Model.DriversLicenceOptions.Length; i++)
                 {
-                    <input asp-for=DriverLicenceSelected[i] type="checkbox"/>
-                    <label asp-for=DriverLicenceSelected[i]> @Model.DriversLicenceOptions[i]</label>                   
+                    <input asp-for=DriverLicenceSelected[i] type="checkbox" />
+                    <label asp-for=DriverLicenceSelected[i]> @Model.DriversLicenceOptions[i]</label>
                 }
-            </div>
+            </div>          
 
+            <div>
+                <label asp-for=Person.YearsOfExperience> </label><br />
+                <input asp-for=Person.YearsOfExperience />
+                <span asp-validation-for=Person.YearsOfExperience></span>
+            </div>
+            <br/>
         </fieldset>
 
         <button type="submit" class="btn btn-primary">Add Person</button>  
