@@ -21,6 +21,7 @@ namespace PrepForOnSite.Pages
         public IList<Person> People { get; private set; }
 
         [BindProperty]
+        
         public string SearchName { get; set; }
 
         [TempData]

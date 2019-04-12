@@ -28,22 +28,36 @@ namespace PrepForOnSite.Pages
         [Required]
         public bool[] DriverLicenceSelected { get; set; } = { false, false, false, false, false};   //arrya of bools checking for textbox selected 
         public string[] DriversLicenceOptions { get; set; } = { "A", "B", "C", "D", "E" };          //array of string holding the values for textbox
+        public bool SomethingSelected { get; set; } = false;
 
+        [BindProperty]
+        public bool TextBoxNotValid { get; set; } = false;
 
         public void OnGet()
         {
+           
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             for (int i = 0; i < 5; i++)
-                if (DriverLicenceSelected[i]) Person.DriversLicence += DriversLicenceOptions[i] + " "; //retreiving texbox input 
+                if (DriverLicenceSelected[i])
+                {
+                    Person.DriversLicence += DriversLicenceOptions[i] + " "; //retreiving texbox input 
+                    SomethingSelected = true;
+                }
+
+            if (!SomethingSelected)
+            {
+                TextBoxNotValid = true;
+                return Page();
+            }
 
             if (ModelState.IsValid)
             {
                 _db.Person.Add(Person);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("./Result", new { id = Person.ID}); /*route parameter set here, go to result page*/
+                return RedirectToPage("/Result", new {id = Person.ID}); /*route parameter set here, go to result page*/
             }
             else
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,7 +12,7 @@ namespace PrepForOnSite.Models
     {
         //[Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-                   
+        
         public int ID { get; set; } //will be used as a key in db can be string aswell, will be generated, the above stuff implicit 
 
         [Required]
@@ -47,6 +48,9 @@ namespace PrepForOnSite.Models
         [Display(Name = "Years of Driving Experience")]
         [Range(0,10, ErrorMessage ="Please enter a number between 1 and 10")] //validation range
         public int YearsOfExperience { get; set; }
+
+        [Required(ErrorMessage ="Please eneter a message")]
+        public string Message { get; set; }
 
     }
 }

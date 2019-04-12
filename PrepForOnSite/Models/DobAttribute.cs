@@ -1,5 +1,6 @@
 ﻿//custom validaiton attribute
 
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,5 +19,12 @@ namespace PrepForOnSite.Models
             else
                 return new ValidationResult("Age must be more then 18!");
         }
+
+        ////only for jquery unobtrusive validation
+        //public void AddValidation(ClientModelValidationContext context)
+        //{
+        //    context.Attributes.Add("data-val", "true");
+        //    context.Attributes.Add("data-val-dob", "Age has to be more then 18");
+        //}
     }
 }

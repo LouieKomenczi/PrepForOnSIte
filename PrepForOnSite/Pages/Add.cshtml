@@ -48,23 +48,44 @@
 
             <label>Drivers Licence Category</label>
 
-            <div class="form-group">
-                @for (int i = 0; i < Model.DriversLicenceOptions.Length; i++)
-                {
-                    <input asp-for=DriverLicenceSelected[i] type="checkbox" />
-                    <label asp-for=DriverLicenceSelected[i]> @Model.DriversLicenceOptions[i]</label>
-                }
-            </div>          
+            @if (Model.TextBoxNotValid)
+            {
+                <div class="form-group">
+                    @for (int i = 0; i < Model.DriversLicenceOptions.Length; i++)
+                    {
+                        <input asp-for=DriverLicenceSelected[i] type="checkbox" />
+                        <label asp-for=DriverLicenceSelected[i]> @Model.DriversLicenceOptions[i]</label>
+                    }
+                    <label class="field-validation-error">Please select a category</label>
+                </div>
+            }
+            else
+            {
+                <div class="form-group ">
+                    @for (int i = 0; i < Model.DriversLicenceOptions.Length; i++)
+                    {
+                        <input asp-for=DriverLicenceSelected[i] type="checkbox" />
+                        <label asp-for=DriverLicenceSelected[i]> @Model.DriversLicenceOptions[i]</label>
+                    }
+                </div>
+            }
+
 
             <div>
                 <label asp-for=Person.YearsOfExperience> </label><br />
                 <input asp-for=Person.YearsOfExperience />
                 <span asp-validation-for=Person.YearsOfExperience></span>
             </div>
-            <br/>
+
+            <div>
+                <label asp-for=Person.Message></label><br />
+                <input asp-for=Person.Message/>
+                <span asp-validation-for="Person.Message"/>
+            </div>
+            <br />
         </fieldset>
 
-        <button type="submit" class="btn btn-primary">Add Person</button>  
+        <button type="submit" class="btn btn-primary">Add Person</button>
     </form>
 </div>
 
